@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 import model.*;
 import view.*;
@@ -9,7 +10,7 @@ public class controlaFuncionario {
 	public static void main(String[] args) {
         ArrayList<Funcionario> funcionarios = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
-        int opcao;
+        int op;
 
         do {
             System.out.println("\nMenu:");
@@ -21,18 +22,32 @@ public class controlaFuncionario {
             System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
             opcao = scanner.nextInt();
-            scanner.nextLine(); // Limpa o buffer
+            scanner.nextLine();
 
-            switch (opcao) {
-                case 1 -> adicionarDesenvolvedor(funcionarios, scanner);
-                case 2 -> adicionarGerente(funcionarios, scanner);
-                case 3 -> adicionarTreinador(funcionarios, scanner);
-                case 4 -> adicionarGerenteDesenvolvedor(funcionarios, scanner);
-                case 5 -> listarFuncionarios(funcionarios);
-                case 0 -> System.out.println("Encerrando o programa...");
-                default -> System.out.println("Opção inválida. Tente novamente.");
+            switch (op) {
+                case 1:
+		    adicionarDesenvolvedor(funcionarios, scanner);
+		    break;
+                case 2:
+		    adicionarGerente(funcionarios, scanner);
+		    break;
+                case 3:
+		    adicionarTreinador(funcionarios, scanner);
+		    break;
+                case 4: 
+		    adicionarGerenteDesenvolvedor(funcionarios, scanner);
+		    break;
+                case 5:
+		    listarFuncionarios(funcionarios);
+		    break;
+                case 0:
+		    System.out.println("Saindo.");
+		    break;
+		default: 
+		    System.out.println("Opção inválida.");
+		    break;
             }
-        } while (opcao != 0);
+        } while (op != 0);
 
         scanner.close();
     }
@@ -42,10 +57,11 @@ public class controlaFuncionario {
         String nome = scanner.nextLine();
         System.out.print("Salário do Desenvolvedor: ");
         double salario = scanner.nextDouble();
-        scanner.nextLine(); // Limpa o buffer
+        scanner.nextLine();
 
-        funcionarios.add(new Desenvolvedor(nome, salario));
-        System.out.println("Desenvolvedor adicionado com sucesso!");
+	int id = random.nextInt(10000);
+        funcionarios.add(new Desenvolvedor(id, nome, salario));
+        System.out.println("Novo Desenvolvedor adicionado!");
     }
 
     private static void adicionarGerente(ArrayList<Funcionario> funcionarios, Scanner scanner) {
@@ -53,10 +69,11 @@ public class controlaFuncionario {
         String nome = scanner.nextLine();
         System.out.print("Salário do Gerente: ");
         double salario = scanner.nextDouble();
-        scanner.nextLine(); // Limpa o buffer
+        scanner.nextLine();
 
-        funcionarios.add(new Gerente(nome, salario));
-        System.out.println("Gerente adicionado com sucesso!");
+	int id = random.nextInt(10000);
+        funcionarios.add(new Gerente(id, nome, salario));
+        System.out.println("Novo Gerente adicionado!");
     }
 
     private static void adicionarTreinador(ArrayList<Funcionario> funcionarios, Scanner scanner) {
@@ -64,10 +81,11 @@ public class controlaFuncionario {
         String nome = scanner.nextLine();
         System.out.print("Salário do Treinador: ");
         double salario = scanner.nextDouble();
-        scanner.nextLine(); // Limpa o buffer
+        scanner.nextLine();
 
-        funcionarios.add(new Treinador(nome, salario));
-        System.out.println("Treinador adicionado com sucesso!");
+	int id = random.nextInt(10000);
+        funcionarios.add(new Treinador(id, nome, salario));
+        System.out.println("Novo Treinador adicionado!");
     }
 
     private static void adicionarGerenteDesenvolvedor(ArrayList<Funcionario> funcionarios, Scanner scanner) {
@@ -75,10 +93,11 @@ public class controlaFuncionario {
         String nome = scanner.nextLine();
         System.out.print("Salário do GerenteDesenvolvedor: ");
         double salario = scanner.nextDouble();
-        scanner.nextLine(); // Limpa o buffer
+        scanner.nextLine();
 
-        funcionarios.add(new GerenteDesenvolvedor(nome, salario));
-        System.out.println("GerenteDesenvolvedor adicionado com sucesso!");
+	int id = random.nextInt(10000);
+        funcionarios.add(new GerenteDesenvolvedor(id, nome, salario));
+        System.out.println("Novo Gerente Desenvolvedor adicionado!");
     }
 
     private static void listarFuncionarios(ArrayList<Funcionario> funcionarios) {
@@ -105,7 +124,7 @@ public class controlaFuncionario {
                 treinador.motivarEquipe();
             }
 
-            System.out.println();
+            System.out.println("\n");
         }
     }
 }
